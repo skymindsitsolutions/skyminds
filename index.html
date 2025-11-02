@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Minds IT Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .about {
+            background: #f9fafb;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item h4 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 1px solid #f3f4f6;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border-color: #3b82f6;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .technologies {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .technologies::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80') center/cover;
+            opacity: 0.05;
+        }
+
+        .technologies .section-title,
+        .technologies .section-subtitle {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .tech-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+        }
+
+        .tech-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .tech-card p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .contact-section {
+            background: #f9fafb;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card p {
+            color: #4b5563;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .contact-card a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: #667eea;
+        }
+
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        footer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 968px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .services-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="data:image/png;base64,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" alt="Sky Minds IT Solutions Logo">
+                    <div class="logo-text">
+                        <h1>SKY MINDS</h1>
+                        <p>IT SOLUTIONS</p>
+                    </div>
+                </div>
+                <nav>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#technologies">Technologies</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content container">
+            <h1>Innovative IT Solutions for Modern Business</h1>
+            <p>Empowering businesses with advanced digital tools that streamline operations, drive growth, and create seamless user experiences</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Sky Minds IT Solutions</h2>
+            <p class="section-subtitle">Your trusted partner in digital transformation</p>
+            
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Team collaboration">
+                </div>
+                <div class="about-content">
+                    <p>Sky Minds IT Solutions is a forward-thinking technology company dedicated to delivering innovative software solutions, robust application development, and complete IT support services. Our mission is to empower businesses with advanced digital tools that streamline operations, drive growth, and create seamless user experiences.</p>
+                    <p>From custom software development to IoT innovations, cloud integration, and enterprise-grade applications, we offer end-to-end solutions designed to meet the unique requirements of every client. Our team of skilled developers, designers, and technology professionals works hand-in-hand with businesses to understand their vision, challenges, and workflows—ensuring that every solution is practical, scalable, and future-ready.</p>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <h4>✓ Precise Processing</h4>
+                    <p>Ensuring accurate execution every time</p>
+                </div>
+                <div class="feature-item">
+                    <h4>✓ Regulatory Compliance</h4>
+                    <p>Staying up-to-date with all regulations</p>
+                </div>
+                <div class="feature-item">
+                    <h4>✓ Tailored Solutions</h4>
+                    <p>Customized to fit your unique business needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive IT solutions tailored to your business needs</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Custom Software Development</h3>
+                    <p>Tailored software solutions designed to address your specific business challenges and optimize workflows for maximum efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Application Development</h3>
+                    <p>End-to-end mobile and web application development with intuitive interfaces and robust backend systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Integration</h3>
+                    <p>Seamless cloud solutions that enable scalability, security, and accessibility for your business operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>IoT Innovations</h3>
+                    <p>Smart IoT solutions connecting devices and systems to create intelligent, automated business environments.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Enterprise Solutions</h3>
+                    <p>Enterprise-grade applications built for large-scale operations with high performance and reliability.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>IT Support Services</h3>
+                    <p>Comprehensive technical support and maintenance to keep your systems running smoothly 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section technologies" id="technologies">
+        <div class="container">
+            <h2 class="section-title">Technologies We Work With</h2>
+            <p class="section-subtitle">Cutting-edge tools and frameworks powering your success</p>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">☕</div>
+                    <h3>Java</h3>
+                    <p>Enterprise-grade applications</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">⚙️</div>
+                    <h3>Microservices</h3>
+                    <p>Scalable architecture solutions</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">☁️</div>
+                    <h3>Cloud Services</h3>
+                    <p>AWS, Azure, Google Cloud</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🔧</div>
+                    <h3>DevOps</h3>
+                    <p>CI/CD & automation</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📊</div>
+                    <h3>Data Engineering</h3>
+                    <p>Big data solutions</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🤖</div>
+                    <h3>Data Science</h3>
+                    <p>AI & ML solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Let's discuss how we can help transform your business</p>
+            <div class="contact-wrapper">
+                <div class="contact-image">
+                    <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&q=80" alt="Contact us">
+                </div>
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <h3>📞 Phone</h3>
+                        <p><a href="tel:+917997271555">+91 7997271555</a></p>
+                        <p><a href="tel:+919550644125">+91 9550644125</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>✉️ Email</h3>
+                        <p><a href="mailto:info@skymindsit.com">info@skymindsit.com</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>📍 Address</h3>
+                        <p>58-6-6/2, Bharat Nagar</p>
+                        <p>Visakhapatnam - 530018</p>
+                        <p>Andhra Pradesh, India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Ready to Transform Your Business?</h3>
+            <p>Contact Sky Minds IT Solutions today to discuss your project</p>
+            <p style="margin-top: 1rem;">© 2025 Sky Minds IT Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
